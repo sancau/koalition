@@ -13,8 +13,8 @@ const DATABASE_NAME = process.argv[3];
     throw Error('Database name was not passed ... ABORTING'); 
 }
 
-const MONGO_URL = process.argv[4] || 
-                  `mongodb://localhost:27017/${DATABASE_NAME}`;
+const MONGO_URL = process.argv[4] ? `${process.argv[4]}/${DATABASE_NAME}` : 
+                    `mongodb://localhost:27017/${DATABASE_NAME}`;
 
 const koa = require('koa'),
       koaBody = require('koa-body'),
@@ -33,8 +33,8 @@ const middleware = require('./middleware'),
 
 process.on("unhandledRejection", (reason, promise) => {
   console.log(reason.red);
-  console.log('ATTENTION. A promise rejection event was cached globaly.'.yellow);
-  console.log('An appropriate error handler might be missing somewhere.'.yellow);
+  console.log('ATTENTION. A promise rejection global catch.'.yellow);
+  console.log('An error handler might be missing somewhere.'.yellow);
 });
 
 
@@ -66,7 +66,8 @@ mongoose.connect(MONGO_URL)
         console.log(`Endpoint ${endpoint.url} up and running ... OK`.green);
       }
       console.log('Starting server ... INFO'.blue);
-      app.listen(PORT, () => console.log(`Listening on port ${PORT} ... OK`.green));
+      app.listen(PORT, () => 
+        console.log(`Listening on port ${PORT} ... OK`.green));
     } 
     catch (err) {
       console.error(`${err} ... ERROR`.red);
