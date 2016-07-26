@@ -9,9 +9,9 @@ This code exposes an easy and extendable way to build a basic REST API service a
 1. cloooone :) 
 2. npm install
 3. Run 'npm run server' with arguments:
-   - <desired PORT> (required argument) 
-   - <database name> (required argument) 
-   - <MongoDB url> (optional argument, default is mongodb://localhost:27017)
+   - port (required argument) 
+   - db name (required argument) 
+   - mongo url (optional argument, default is mongodb://localhost:27017)
    
   Example 'npm run server 2500 mydb'
 
