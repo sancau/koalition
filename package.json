@@ -1,9 +1,9 @@
 {
-  "name": "server-koa-mongoose",
+  "name": "koalition",
   "version": "0.0.1",
   "description": "REST API server side implementation using Koa, Mongoose and Bluebird.",
   "scripts": {
-    "start": "node src/server.js",
+    "server": "node src/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
