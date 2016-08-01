@@ -14,10 +14,12 @@ const DATABASE_NAME = process.argv[3];
 }
 
 const MONGO_URL = process.argv[4] ? `${process.argv[4]}/${DATABASE_NAME}` : 
-                    `mongodb://localhost:27017/${DATABASE_NAME}`;
+                `mongodb://${process.env.MONGODB_PORT_27017_TCP_ADDR}` +
+                `:${process.env.MONGODB_PORT_27017_TCP_PORT}/${DATABASE_NAME}`;
 
 const koa = require('koa'),
       koaBody = require('koa-body'),
+      kcors = require('kcors'),
       mongoose = require('mongoose'),
       bluebird = require('bluebird'),
       colors = require('colors');
@@ -48,6 +50,7 @@ mongoose.connect(MONGO_URL)
     try {
       const app = koa();
       app.use(koaBody({formidable:{uploadDir: __dirname + '/uploads'}}));
+      app.use(kcors());
 
       // plug in all the application level middleware
       for (let item in middleware) {
