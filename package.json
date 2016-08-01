@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "description": "REST API server side implementation using Koa, Mongoose and Bluebird.",
   "scripts": {
-    "server": "node src/server.js",
+    "start": "node src/server.js 5000 tasker",
+    "dev": "nodemon src/server.js 5000 tasker-dev mongodb://localhost:27017",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -20,6 +21,7 @@
   "dependencies": {
     "bluebird": "^3.4.1",
     "colors": "^1.1.2",
+    "kcors": "^1.2.1",
     "koa": "^1.2.0",
     "koa-body": "^1.4.0",
     "koa-router": "^5.4.0",
